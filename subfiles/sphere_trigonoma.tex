@@ -1,0 +1,78 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\subsection{Сферическая теорема косинусов}
+
+\textit{Построение:} Рассмотрим сферический треугольник с вершинами \textbf{A}, \textbf{B} и \textbf{C} со сторонами $a$, $b$ и $c$ на сфере с центром в точке \textbf{O} и единичным радиусом. Рассмотрим проекцию вершины A на плоскость стороны $a$. Для этого проведём 2 такие касательные,чтобы они соответственно пересекались с лучами OB и OC. Назовём эти точки пересечения \textbf{D} и \textbf{E} соответственно. 
+
+\begin{center}
+	\begin{tikzpicture}[dot/.style = {draw, fill = black, color = black, circle, inner sep=1pt}]
+		\draw (0,0) arc (180:130:5);
+		\draw (0,0) arc (245:280.1:5);
+		\draw (1.78,3.82) arc (170:222:5);
+		\path[fill=black!] (4,1) circle (0.5mm);
+		\draw[dashed] (-3.5,-0.875) -- (4,1);
+		\draw[dashed] (1.78,3.82) -- (4,1);
+		\draw[dashed] (1.1,-3) -- (4,1);
+		\draw (1.78,3.82) -- (-3.5,-0.875);
+		\draw (1.1,-3) -- (1.78,3.82);
+		\draw (1.1,-3) -- (-3.5,-0.875);
+		\node at (1.85,4.25)   (.) {\textbf{A}};
+		\node at (-0.3,0.2)   (.) {\textbf{B}};
+		\node at (3.3,-0.5)   (.) {\textbf{C}};
+		\node at (4.4,1.1)   (.) {\textbf{O}};
+		\node at (-3.85,-0.9)   (.) {\textbf{D}};
+		\node at (1.1,-3.3)   (.) {\textbf{E}};
+		\node at (1,-0.59)   (.) {$a$};
+		\node at (0.1,1.9)   (.) {$c$};
+		\node at (2.15,1.6)   (.) {$b$};
+	\end{tikzpicture}
+\end{center}
+Запишем теорему косинусов для $\triangle \rm DOE$ и $\triangle \rm DAE$:
+$$ \rm DE^{2}=DO^{2}+OE^{2}-2\cdot DO \cdot OE \cdot \cos{\textit{a}} $$
+$$ \rm DE^{2}=AE^{2}+DA^{2}-2\cdot AE \cdot DA \cdot \cos A $$
+Приравняем левые части:
+$$ \rm DO^{2}+OE^{2}-2\cdot DO \cdot OE \cdot \cos{\textit{a}} =AE^{2}+DA^{2}-2\cdot AE \cdot DA \cdot \cos A $$
+$$ \rm AO^{2}+AO^{2}+2\cdot AE \cdot DA \cdot \cos A =2\cdot DO \cdot OE \cdot \cos{\textit{a}} $$
+$$ \rm AO^{2}+ AE \cdot DA \cdot \cos A= DO \cdot OE \cdot \cos{\textit{a}} $$
+
+Поскольку $\rm AD$ и $\rm AE$ -- касательные к окружности, то тогда $\angle \rm OAD = \angle OAE=90^\circ$. Значит: 
+$$ \rm OE=\frac{AO}{\cos{\textit{b}}}~\mbox{и}~DO=\frac{AO}{\cos{\textit{c}}} $$
+$$ \rm \tan{\textit{b}}=\frac{AE}{AO} \Rightarrow AE= AO\cdot \tan{\textit{b}} $$
+$$ \rm \tan{\textit{c}}=\frac{AD}{AO} \Rightarrow AD= AO\cdot \tan{\textit{c}} $$
+Поскольку $\rm AO$ является радиусом окружности, то тогда заменим $\rm AO$ на $\rm R$:
+$$ \rm OE=\frac{R}{\cos{\textit{b}}}~\mbox{и}~DO=\frac{R}{\cos{\textit{c}}} $$
+$$ \rm AE= R \tan{\textit{b}},~~ AD= R \tan{\textit{c}} $$
+Подставим это в полученное раннее выражение:
+$$ \rm R^{2}+R \tan{\textit{b}} \cdot R \tan{\textit{c}} \cdot \cos A = \frac{R}{\cos{\textit{b}}}\cdot \frac{R}{\cos{\textit{c}}} \cdot \cos{\textit{a}} $$
+Поскольку сфера единиичного радиуса, то $\rm R=1$, тогда:
+$$ \rm 1+\tan{\textit{b}} \cdot \tan{\textit{c}} \cdot \cos A=\frac{1}{\cos{\textit{b}} \cos{\textit{c}}} \cdot \cos{\textit{a}} $$
+Преобразовав, получим сферическую теорему косинусов в её привычном виде:
+$$  \boxed{\rm \cos{\textit{a}}= \cos{\textit{b}} \cos{\textit{c}}+ \sin{\textit{b}} \sin{\textit{c}} \cos A} $$
+
+
+\subsection{Сферическая теорема синусов} 
+Для начала запишем уже доказанную сферическую теорему косинусов:
+$$ \cos{a} =  \cos{b}\cos{c}+\sin{b}\sin{c}\cos{\rm A} $$
+$$ \cos{\rm A}= \frac{\cos{a}-\cos{b}\cos{c}}{\sin{b}\sin{c}} $$
+$$ \sin^2{\rm A} = 1-\cos^2{\rm A} = 1 - \left( \frac{\cos{a}-\cos{b}\cos{c}}{\sin{b}\sin{c}} \right )^2 $$
+
+$$\sin^2{\rm A}= \frac{(\sin{b}\sin{c})^2  -\cos^2{a}+2\cos a \cos b \cos c-(\cos{b}\cos{c})^2 }{(\sin{b}\sin{c})^2} $$
+Поскольку $\sin^2 a=1-\cos^2 a$, $\sin^2 b=1-\cos^2 b$, $\sin^2 c=1-\cos^2 c$:
+$$ \sin^2{\rm A} = \frac{ \left( 1 - \cos^2{b} \right)\left(1 - \cos^2{c} \right) - \cos^2{a} + 2\cos{a}\cos{b}\cos{c} - \cos^2{b}\cos^2{c}}{\sin^2{b} \sin^2{c}}  $$
+
+$$ \sin^2{\rm A} = \frac{1-\cos^2{c}-\cos^2{b} - \cos^2{a} + 2\cos{a}\cos{b}\cos{c}}{\sin^2{b}\sin^2{c}} $$
+Поделим обе части на $\sin^2 a$:
+$$ \frac{\sin^2{\rm A}}{\sin^2 a} = \frac{1-\cos^2{c}-\cos^2{b} - \cos^2{a} + 2\cos{a}\cos{b}\cos{c}}{\sin^2{a}\sin^2{b}\sin^2{c}} $$
+Полученное выражение симметрично относительно $a$, $b$ и $c$. Если заменить $\rm A$ на $\rm B$, $a$ на $b$ или $\rm A$ на  $\rm C$ и $a$ на $c$, получим:
+\begin{equation*}
+	\begin{cases}
+		\dfrac{\sin^2{\rm B}}{\sin^2 b} = \dfrac{1-\cos^2{c}-\cos^2{b} - \cos^2{a} + 2\cos{a}\cos{b}\cos{c}}{\sin^2{a}\sin^2{b}\sin^2{c}} \\
+		~~\\
+		\dfrac{\sin^2{\rm C}}{\sin^2 c} = \dfrac{1-\cos^2{c}-\cos^2{b} - \cos^2{a} + 2\cos{a}\cos{b}\cos{c}}{\sin^2{a}\sin^2{b}\sin^2{c}} 
+	\end{cases}
+\end{equation*}
+Откуда получаем сферичекую теорему синусов в привычном виде:
+$$ \boxed{\dfrac{\sin{a}}{\sin{\rm A}}=\dfrac{\sin{b}}{\sin{\rm B}}=\dfrac{\sin{c}}{\sin{\rm C}}} $$
+
+\end{document}
