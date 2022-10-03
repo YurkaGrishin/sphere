@@ -1,0 +1,66 @@
+\newcommand{\problemnumprefix}{}
+\newcommand{\problemauthor}[1]{\tagged{PrintProblemAuthors}{\pagebreak[0]\hbox to \textwidth{\hfill\textit{#1}}\\}}
+\newcommand{\problemdefaultpoints}{}
+
+\newcommand{\generateproblemnumprefix}[1]{%
+    \def\nextitem{\def\nextitem{|}}% Separator
+    \renewcommand*{\do}[1]{\nextitem ##1}% How to process each item
+    \docsvlist{#1}%
+}
+
+\newcounter{problem}
+\NewDocumentEnvironment{Problem}{m d<> D(){\problemdefaultpoints} o +b}{
+    \IfNoValueF{#2}{
+        \tagged{PrintSmartPrefix}{
+            \renewcommand{\problemnumprefix}{\generateproblemnumprefix{#2}.}
+        }
+    }%
+    \addtocounter{problem}{1}%
+    \tagged{#2,PrintAllProblems}{
+        \par\bigskip%
+        {\pagebreak[3] \large \textbf{\problemnumprefix\arabic{problem}. #1} {\hfill #3}} \\ 
+        \noindent \setcounter{subproblem}{0}%
+        \IfNoValueF{#4}{\problemauthor{#4}}%
+        \begin{samepage}%
+        #5
+        \end{samepage}
+    }
+}{}
+
+\newcounter{shortproblem}
+\NewDocumentCommand{\ShortProblem}{o}{
+    \par \addtocounter{shortproblem}{1} { \pagebreak[3] 
+    \mbox{\textbf{\problemnumprefix\arabic{shortproblem}.}\IfNoValueF{#1}{ \color{gray}[#1]}}}
+}
+
+\newcounter{subproblem}[problem]
+\NewDocumentCommand{\SubProblem}{o}{
+    \par \addtocounter{subproblem}{1} { \pagebreak[3] 
+    \mbox{\textbf{\arabic{problem}.\arabic{subproblem}.}\IfNoValueF{#1}{ \color{gray}[#1]}}}
+}
+
+\NewDocumentEnvironment{Solution}{+b}{
+    \tagged{PrintSolutions}{\pagebreak[3]\par\bigskip \textbf{Решение.} \nopagebreak #1}
+}{}
+\NewDocumentEnvironment{Answer}{+b}{
+    \tagged{PrintSolutions}{\pagebreak[3]\par\bigskip \textbf{Ответ.} \nopagebreak #1}
+}{}
+\NewDocumentEnvironment{ProblemComment}{+b}{
+    \tagged{PrintSolutions}{\pagebreak[3]\par\bigskip \textbf{Комментарий.} \nopagebreak #1}
+}{}
+
+\renewcommand{\thempfootnote}{\fnsymbol{mpfootnote}}
+\NewDocumentEnvironment{CriterionBlock}{m +b}{%
+    \tagged{PrintSolutions}{\pagebreak[3]\par\bigskip%
+    \begin{minipage}{\textwidth}
+        \hbox to \textwidth{\textbf{Критерии оценивания. \hfill #1}}%
+        #2
+    \end{minipage}
+    }
+}{\vspace{1pt}}
+
+\newcommand{\Criterion}[2]{\nopagebreak\hbox to \textwidth{#1\dotfill #2}}
+\newcommand{\SubCriterionCaption}[2]{\nopagebreak\hbox to \textwidth{#1\hfill#2}}
+\newcommand{\SubCriterion}[2]{\nopagebreak\hbox to 0.95\textwidth{\hspace{\parindent}#1\dotfill{#2}}}
+% \newcommand{\Criterioncaption}[1]{\pagebreak[3]\par\bigskip\hbox to \textwidth{\textbf{Критерии оценивания \hfill #1}}}
+\newcommand{\CriterionComment}[1]{\small\pagebreak[3]\par\smallskip\textbf{Комментарии к системе оценивания.} #1}
